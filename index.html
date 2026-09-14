@@ -2,6 +2,20 @@
 
 <html lang="de">
 <head>
+<script>
+// Always open/reload the site at the very top. Normal in-page navigation still works after load.
+(function(){
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  window.scrollTo(0, 0);
+  window.addEventListener('pageshow', function(){
+    requestAnimationFrame(function(){ window.scrollTo(0, 0); });
+  });
+  window.addEventListener('load', function(){
+    requestAnimationFrame(function(){ window.scrollTo(0, 0); });
+  }, {once:true});
+})();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
 <title>JuiceUpp – Power on the go</title>
